@@ -1,0 +1,19 @@
+<a [routerLink]="['/']">
+  <h2 id="storeName">
+    <i id="storeIcon" class="material-icons">cake</i>
+    味難忘甜品屋
+    </h2>
+</a>
+<div>
+<a *ngIf="!account.isLogin()" [routerLink]="['/login']" class="button fancy-button">
+Login
+</a>
+<a *ngIf="account.isLogin()" (click)="account.logout()" class="button fancy-button">
+  Logout
+  </a>
+</div>
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+-->

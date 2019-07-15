@@ -1,0 +1,36 @@
+<div *ngIf="account.isLogin()">
+<div>
+    Account :{{account.getAccount().account}}
+</div>
+<div>
+    Password :{{account.getAccount().password}}
+</div>
+</div>
+
+<div *ngIf="!account.isLogin()">
+  <form [formGroup]="loginForm" (ngSubmit)="submit(loginForm.value)">
+    <div>
+      <label>account</label>
+      <input class="form-control" type="text" formControlName="account">
+    </div>
+    <div>
+      <label>password</label>
+      <input class="form-control" type="password" formControlName="password">
+    </div>
+    <button>Login</button>
+  </form>
+
+  <div>
+    <button id='forgot-password'>
+      <label>忘記密碼</label>
+    </button>
+  </div>
+
+  <div>
+    <button id='add-member' [routerLink]="['../','addMember']">
+      <label>註冊會員</label>
+    </button>
+  </div>
+
+
+</div>
