@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder,FormGroup,Validators,FormControl} from '@angular/forms';
+import { BackendApiService} from '../backend-api.service';
 @Component({
   selector: 'app-add-member-page',
   templateUrl: './add-member-page.component.html',
@@ -15,7 +16,7 @@ export class AddMemberPageComponent{
   password;
   confirmPassword;
   passwordEqual=false;
-  constructor(private formBuilder:FormBuilder){ 
+  constructor(private formBuilder:FormBuilder,private api:BackendApiService){ 
     this.memberForm=this.formBuilder.group({
       name:['',Validators.minLength(3)],
       identify:'',
@@ -44,5 +45,14 @@ export class AddMemberPageComponent{
    
   }
 
+  testApi(){
+    this.api.getAccount().subscribe(resp=>{
+      // const content=resp.body;
+      // console.log(content);
+    },error=>{
+      console.log(error);
+    }
+    );
+  }
 
 }

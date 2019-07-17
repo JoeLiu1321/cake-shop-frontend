@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { TabBarComponent } from './tab-bar/tab-bar.component';
@@ -10,10 +10,12 @@ import { TabDetailComponent } from './tab-detail/tab-detail.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AccountService } from './account.service';
 import { AddMemberPageComponent } from './add-member-page/add-member-page.component';
+import { BackendApiService } from './backend-api.service';
 
 @NgModule({
   imports: [
     BrowserModule,
+    HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: TabBarComponent },
@@ -30,7 +32,7 @@ import { AddMemberPageComponent } from './add-member-page/add-member-page.compon
     AddMemberPageComponent
   ],
   bootstrap: [ AppComponent ],
-  providers: [AccountService]
+  providers: [AccountService, BackendApiService]
 })
 export class AppModule { }
 
