@@ -46,9 +46,10 @@ export class AddMemberPageComponent{
   }
 
   testApi(){
-    this.api.getAccount().subscribe(resp=>{
-      // const content=resp.body;
-      // console.log(content);
+    let apitest=this.api.addAccount();
+    apitest.subscribe(resp=>{
+      const content=resp;
+      console.log(content);
     },error=>{
       console.log(error);
     }
