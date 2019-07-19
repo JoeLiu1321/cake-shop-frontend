@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpParams } from '@angular/common/http';
 @Injectable()
 export class BackendApiService {
 
@@ -7,42 +7,44 @@ export class BackendApiService {
   constructor(private http:HttpClient) { }
   
   public getAccount(){
-    return this.http.get<String>(this.url+'/test',{responseType:'text'});
+    return this.http.get(this.url+'/test',{responseType:'text'});
   }
 
-  public addAccount(){
-    let account={
-      accountName:'tim98765',
-      password:'tim98765',
-      privilege:1,
-      info:{
-        identify:'A1928334',
-        name:'Joe',
-        phone:'0987654321'
-      }
-    }
-    return this.http.post<String>(this.url,account,{
-        'responseType':'text',
+  public addAccount(account:Account){
+    return this.http.post(this.url,account,{
+        headers:{
         'Content-Type':'application/json'
+        },
+        responseType:'text'
       });
-    
+  }
+
+  public login(account,password){
+    // const params={
+    //   'accountName':account,
+    //   'password':password
+    // }
+    let params=new HttpParams()
+    .append('accountName',`${account}`)
+    .append('password',`${password}`);
+    return this.http.post(this.url+'/login',params);
   }
 }
 
 export interface Account{
-  id?:Number,
-  accountName:String,
-  password:String,
-  privilege?:Number,
+  id?:number,
+  accountName:string,
+  password:string,
+  privilege?:number,
   info?:AccountInfo
 
 }
 
 export interface AccountInfo{
-  id?:Number,
-  identify?:Number,
-  name:String,
-  phone:String,
-  address:String,
-  email:String
+  id?:number,
+  identify?:number,
+  name:string,
+  phone:string,
+  address:string,
+  email:string
 }

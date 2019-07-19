@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder,FormGroup} from '@angular/forms';
-import {AccountService} from '../account.service'
-
+import {AccountService} from '../account.service';
+import {BackendApiService} from '../backend-api.service';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -9,7 +9,7 @@ import {AccountService} from '../account.service'
 })
 export class LoginPageComponent{
   loginForm:FormGroup;
-  constructor(private account:AccountService, private formBuilder:FormBuilder,){ 
+  constructor(private account:AccountService, private formBuilder:FormBuilder,private apiService:BackendApiService){ 
     this.loginForm=this.formBuilder.group({
       account:'',
       password:''
@@ -17,12 +17,15 @@ export class LoginPageComponent{
   }
 
   submit(formData) {
-    if(formData['account']=='' || formData['password']==''){
-      window.alert('Account and Password should not be empty');
-      return;
-    }
-    else
-      this.account.login(formData);
+    console.log(formData.account)
+      this.apiService.login(formData.account,formData.password).subscribe(
+        resp=>{
+          if(resp['status'])
+            this.account.login(formData);
+          else
+            window.alert(resp['message']);
+        }
+      );
   }
 
 }

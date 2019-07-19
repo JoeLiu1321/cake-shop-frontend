@@ -11,13 +11,13 @@
   <form [formGroup]="loginForm" (ngSubmit)="submit(loginForm.value)">
     <div>
       <label>account</label>
-      <input class="form-control" type="text" formControlName="account">
+      <input class="form-control" type="text" formControlName="account" required>
     </div>
     <div>
       <label>password</label>
-      <input class="form-control" type="password" formControlName="password">
+      <input class="form-control" type="password" formControlName="password" required>
     </div>
-    <button>Login</button>
+    <button [disabled]="loginForm.invalid">Login</button>
   </form>
 
   <div>
