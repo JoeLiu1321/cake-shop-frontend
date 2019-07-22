@@ -1,10 +1,7 @@
 <div *ngIf="account.isLogin()">
-<div>
-    Account :{{account.getAccount().account}}
-</div>
-<div>
-    Password :{{account.getAccount().password}}
-</div>
+<h1>
+    Welcome {{account.getAccount()}}
+</h1>
 </div>
 
 <div *ngIf="!account.isLogin()">

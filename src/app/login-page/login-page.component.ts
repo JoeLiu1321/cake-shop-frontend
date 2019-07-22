@@ -17,15 +17,14 @@ export class LoginPageComponent{
   }
 
   submit(formData) {
-    console.log(formData.account)
-      this.apiService.login(formData.account,formData.password).subscribe(
-        resp=>{
-          if(resp['status'])
-            this.account.login(formData);
-          else
-            window.alert(resp['message']);
-        }
-      );
+    this.apiService.login(formData.account,formData.password).subscribe(
+      resp=>{
+        if(resp['status'])
+          this.account.login(formData.account);
+        else
+          window.alert(resp['message'])
+      }
+    );
   }
 
 }

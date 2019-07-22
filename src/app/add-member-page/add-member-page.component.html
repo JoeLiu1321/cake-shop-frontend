@@ -1,5 +1,3 @@
-<button (click)="testApi()">test</button>
-
 <div id="add-member">
   <form [formGroup]="memberForm" (ngSubmit)="submit(memberForm.value)" required>
     <div>
@@ -39,7 +37,7 @@
       <label>住址</label>
       <input class="form-control" type="text" formControlName="address" required>
        <span id="error" *ngIf="address.invalid && address.dirty">
-        Phone is invalid!
+        Address is invalid!
       </span>
     </div>
 

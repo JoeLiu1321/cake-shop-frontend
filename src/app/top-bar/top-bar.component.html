@@ -5,12 +5,12 @@
     </h2>
 </a>
 <div>
-<a *ngIf="!account.isLogin()" [routerLink]="['/login']" class="button fancy-button">
+<button *ngIf="!account.isLogin()" [routerLink]="['/login']">
 Login
-</a>
-<a *ngIf="account.isLogin()" (click)="account.logout()" class="button fancy-button">
+</button>
+<button *ngIf="account.isLogin()" (click)="account.logout()">
   Logout
-  </a>
+  </button>
 </div>
 <!-- 
 Copyright Google LLC. All Rights Reserved.

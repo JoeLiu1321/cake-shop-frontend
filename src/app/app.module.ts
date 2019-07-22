@@ -11,6 +11,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { AccountService } from './account.service';
 import { AddMemberPageComponent } from './add-member-page/add-member-page.component';
 import { BackendApiService } from './backend-api.service';
+import {ProductListComponent} from './product-list/product-list.component';
+import {AddOrderPageComponent} from './add-order-page/add-order-page.component';
 
 @NgModule({
   imports: [
@@ -20,7 +22,8 @@ import { BackendApiService } from './backend-api.service';
     RouterModule.forRoot([
       { path: '', component: TabBarComponent },
       { path:'login', component:LoginPageComponent},
-      { path:'addMember',component:AddMemberPageComponent}
+      { path:'addMember',component:AddMemberPageComponent},
+      { path:'addOrder/:productId',component:AddOrderPageComponent},
     ])
   ],
   declarations: [
@@ -29,7 +32,9 @@ import { BackendApiService } from './backend-api.service';
     TabBarComponent,
     TabDetailComponent,
     LoginPageComponent,
-    AddMemberPageComponent
+    AddMemberPageComponent,
+    ProductListComponent,
+    AddOrderPageComponent
   ],
   bootstrap: [ AppComponent ],
   providers: [AccountService, BackendApiService]

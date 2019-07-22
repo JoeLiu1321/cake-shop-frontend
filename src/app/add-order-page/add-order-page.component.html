@@ -1,0 +1,34 @@
+<div *ngIf="!account.isLogin()">
+    <h1>
+        Please Login First !!
+    </h1>
+    <div>
+        <label>
+            產品名稱
+        </label>
+        <select>
+            <option *ngFor="let p of products;" [value]="p.value">
+                {{p.name}}
+            </option>
+        </select>
+    </div>    
+    <p *ngIf="productId">
+        {{productId}}
+    </p>
+</div>
+
+<div *ngIf="account.isLogin()">
+    <form [formGroup]="orderForm" (ngSubmit)="submit(orderForm.value)" required>
+        <div>
+            <label>
+                <span id="require">* </span>
+                商品名稱
+                </label>
+            <input class="form-control" type="text" formControlName="product" required>
+            <span id="error" *ngIf="product.invalid && product.dirty" >
+                product is invalid!
+            </span>
+        </div>
+        <button [disabled] =  "orderForm.invalid" >submit</button>
+    </form>
+</div>

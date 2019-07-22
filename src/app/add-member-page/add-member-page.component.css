@@ -1,7 +1,4 @@
-#error
+#error,#require
 {
   color: red;
-}
-#require{
-  color:red;
 }

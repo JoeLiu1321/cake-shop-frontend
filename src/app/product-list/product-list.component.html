@@ -1,0 +1,25 @@
+<div *ngFor="let product of products">
+    <div>
+        <h1 id="product-title">
+            {{product.name}}
+        </h1>
+        <h2>
+            內容:{{product.description}}
+        </h2>
+        <h2>
+            價格:${{product.price}}
+        </h2>
+        <h2>
+            剩餘數量: {{product.volume}}
+        </h2>
+        <h2>
+            <button [routerLink]="['/addOrder',product.id]">
+                <label>
+                    馬上訂購
+                </label>
+            </button>
+        </h2>
+    </div>
+</div>
+
+

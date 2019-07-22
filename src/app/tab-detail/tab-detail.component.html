@@ -1,8 +1,13 @@
-<div>
-<h1>
-  '{{tab.name}}' page
-  </h1>
-<p>
-{{tab.description}}
-</p>
+<div [ngSwitch]="tab?.name">
+    <app-add-member-page *ngSwitchCase="'加入會員'"></app-add-member-page>
+    <app-product-list *ngSwitchCase="'產品介紹'"></app-product-list>
+    <app-add-order-page *ngSwitchCase="'線上訂購'"></app-add-order-page>
 </div>
+<!-- <div>
+  <h1>
+    '{{tab.name}}' page
+  </h1>
+  <p>
+    {{tab.description}}
+  </p>
+</div> -->

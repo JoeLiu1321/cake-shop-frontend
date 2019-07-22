@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder,FormGroup,Validators,FormControl} from '@angular/forms';
+import {FormBuilder,FormGroup,Validators} from '@angular/forms';
 import { BackendApiService, AccountInfo,Account} from '../backend-api.service';
 @Component({
   selector: 'app-add-member-page',
@@ -40,6 +40,10 @@ export class AddMemberPageComponent{
     return(this.password.value==this.confirmPassword.value); 
   }
   submit(formData){
+    for(const data in formData){
+      console.log(`${data}:${formData[data]}`)
+    }
+
     let account:Account={
       accountName:formData.email,
       password:formData.password,
@@ -47,27 +51,16 @@ export class AddMemberPageComponent{
         identify:formData.identify,
         name:formData.name,
         phone:formData.phone,
-        address:formData.adderss,
+        address:formData['address'],
         email:formData.email
       }
     }
       this.api.addAccount(account).subscribe(
         resp=>{
-          window.alert(resp);
+          window.alert(resp['message']);
         }
       );
     
   }
-
-  testApi(){
-    if(window.confirm('sure?')){
-      this.api.getAccount().subscribe(
-        resp=>{
-          window.alert(resp);
-        }
-      )
-    }
-    
-}
 
 }

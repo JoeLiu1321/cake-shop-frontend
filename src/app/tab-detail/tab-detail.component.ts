@@ -1,5 +1,4 @@
 import { Component, OnInit,Input } from '@angular/core';
-// import {tabs} from '../tab-bar/tab-bar.component'
 
 @Component({
   selector: 'app-tab-detail',
