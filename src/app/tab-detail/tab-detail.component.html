@@ -1,7 +1,9 @@
-<div [ngSwitch]="tab?.name">
+<div [ngSwitch]="tab">    
     <app-add-member-page *ngSwitchCase="'加入會員'"></app-add-member-page>
     <app-product-list *ngSwitchCase="'產品介紹'"></app-product-list>
     <app-add-order-page *ngSwitchCase="'線上訂購'"></app-add-order-page>
+    <app-add-product-page *ngSwitchCase="'編輯產品'"></app-add-product-page>
+    <app-order-page *ngSwitchCase="'訂單記錄'"></app-order-page>
 </div>
 <!-- <div>
   <h1>

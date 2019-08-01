@@ -1,33 +1,16 @@
 import { Component} from '@angular/core';
 
-export const tabs=[
-    {
-      'name':'關於我們',
-      'description':'關於我們的content',
-    },
-    {
-      'name':'產品介紹',
-      'description':'產品介紹的內容',
-    },
-    {
-     'name':'線上訂購',
-     'description':'線上訂購的內容',
-    },
-    {
-      'name':'加入會員',
-      'description':'加入會員的內容'
-    }
-    ]
+export const tabs=['關於我們','產品介紹','線上訂購','加入會員','訂單記錄','編輯產品','使用者管理'];
 
 @Component({
-  selector: 'tab-bar',
+  selector: 'app-tab-bar',
   templateUrl: './tab-bar.component.html',
   styleUrls: ['./tab-bar.component.css']
 })
 export class TabBarComponent {
   tabs=tabs;
   currentTab=tabs[0]
-
+  
   setCurrentTab(tab){
     this.currentTab=tab;
   }

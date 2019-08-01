@@ -1,4 +1,4 @@
-<div *ngIf="!account.isLogin()">
+<!-- <div *ngIf="!account.isLogin()">
     <h1>
         Please Login First !!
     </h1>
@@ -15,20 +15,40 @@
     <p *ngIf="productId">
         {{productId}}
     </p>
-</div>
+</div> -->
 
-<div *ngIf="account.isLogin()">
-    <form [formGroup]="orderForm" (ngSubmit)="submit(orderForm.value)" required>
+<!-- <div *ngIf="!account.isLogin()"> -->
+<div>
+    <form [formGroup]="orderForm" (ngSubmit)="onSubmit(orderForm.value)" required>
         <div>
-            <label>
+            <span>
                 <span id="require">* </span>
                 商品名稱
-                </label>
-            <input class="form-control" type="text" formControlName="product" required>
+            </span>
+            <select class="form-control" formControlName="product" required>
+                <option *ngFor="let p of allProduct;" [value]="p.id">
+                    {{p.name}}
+                </option>
+            </select>
             <span id="error" *ngIf="product.invalid && product.dirty" >
                 product is invalid!
             </span>
         </div>
-        <button [disabled] =  "orderForm.invalid" >submit</button>
+
+        <div>
+            <span>
+                <span id="require">* </span>
+                    數量
+            </span>
+            <input type="number" class="form-control" formControlName="productNumber" required max="10" min="1">
+            <span id="error" *ngIf="productNumber.invalid && productNumber.dirty" >
+                productNumber is invalid!
+            </span>
+        </div>
+        <div>
+            <button [disabled] =  "orderForm.invalid" >
+                    submit
+                </button>
+            </div>
     </form>
 </div>

@@ -1,12 +1,5 @@
 <div>
-<button *ngFor="let tab of tabs" [title]="tab.name" (click)="setCurrentTab(tab)">
- {{tab.name}}
-</button>
+    <button *ngFor="let tab of tabs" [title]="tab" (click)="setCurrentTab(tab)" [routerLink]="['/tab',tab]">
+        {{tab}}
+    </button>
 </div>
-<app-tab-detail [tab]="currentTab">
-</app-tab-detail>
-<!-- 
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
--->

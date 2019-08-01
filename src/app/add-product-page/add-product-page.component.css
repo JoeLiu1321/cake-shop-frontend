@@ -1,0 +1,10 @@
+#error,#require
+{
+  color: red;
+}
+div{
+    line-height: 300%;
+}
+.form-control{
+    height: 150%;
+}

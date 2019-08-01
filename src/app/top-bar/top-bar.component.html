@@ -5,15 +5,13 @@
     </h2>
 </a>
 <div>
+<app-tab-bar></app-tab-bar>
+</div>
+<div>
 <button *ngIf="!account.isLogin()" [routerLink]="['/login']">
 Login
 </button>
 <button *ngIf="account.isLogin()" (click)="account.logout()">
-  Logout
-  </button>
+    Logout
+    </button>
 </div>
-<!-- 
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
--->

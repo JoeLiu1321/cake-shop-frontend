@@ -1,38 +1,61 @@
 import { Component,OnInit } from '@angular/core';
-import {FormBuilder, FormGroup}  from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
-import {AccountService} from '../account.service'
+import {FormBuilder, FormGroup, Validators}  from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AccountService} from '../account.service';
+import {BackendApiService, Order} from '../backend-api.service';
+// import { DatePipe } from '@angular/common';
 @Component({
     selector: 'app-add-order-page',
     templateUrl: './add-order-page.component.html',
     styleUrls: ['./add-order-page.component.css']
 })
 export class AddOrderPageComponent implements OnInit{
+    allProduct;
     productId;
     orderForm:FormGroup;
     product;
-    products=[
-        {
-            value:0,
-            name:'aa123'
-        },
-        {
-            value:2,
-            name:'bb321'
-        }
-    ]
-    constructor(private router:ActivatedRoute, private formBuilder:FormBuilder, private account:AccountService){
+    productNumber;
+    constructor(private activatedRouter:ActivatedRoute, private formBuilder:FormBuilder, private account:AccountService, private api:BackendApiService, private router:Router){
         this.orderForm=formBuilder.group({
             product:'',
+            productNumber:[0,Validators.min(1)],
         })
+        
         this.product=this.orderForm.controls['product'];
+        this.productNumber=this.orderForm.controls['productNumber'];
+        
     }
 
     ngOnInit(){
-        this.router.paramMap.subscribe(
-            params=>{
-                this.productId=params.get('productId');
+        this.api.getAllProduct().subscribe(
+            products=>{
+                this.allProduct=products;        
             }
         )
+        this.activatedRouter.paramMap.subscribe(
+            params=>{
+                this.productId=params.get('productId');
+                if(this.productId)
+                    this.product.setValue(this.productId);
+            }
+        )
+    }
+
+    onSubmit(formData){
+        let productId=formData['product'];
+        let product=this.allProduct.find(x=>x.id==productId); //fixme
+        if(window.confirm(`確認要購買'${product.name}'總共${formData['productNumber']}個?`)){
+            let order:Order={
+                product:product,
+                accountName:this.account.getAccount()
+            }
+            this.api.createOrder(order).subscribe(
+                resp=>{
+                    window.alert(`${resp.message}`);
+                    this.router.navigate(['/tab','訂單記錄'])
+                }
+            )
+        }
+
     }
 }

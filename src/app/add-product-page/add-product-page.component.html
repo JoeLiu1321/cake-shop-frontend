@@ -1,0 +1,75 @@
+<div>
+    <div [formGroup]="productForm" (ngSubmit)="onSubmit(productForm.value)">
+        <div>
+            <span>選擇一個產品</span>
+            <select class="form-control" formControlName="action" (change)="onOptionChange(action.value)" required>
+                <option value="-1"> 
+                    新增產品
+                </option>
+                <option *ngFor="let p of products;" [value]="p.id">
+                    {{p.name}}
+                </option>
+            </select>
+        </div>
+        <div>
+            <span>
+                <span id="require">* </span>
+                商品名稱
+                </span>
+            <input type="text" class="form-control" formControlName="name" required>
+            <span id="error" *ngIf="name.invalid && name.dirty" >
+                請輸入產品名稱
+            </span>
+        </div>
+        <div>
+            <span>
+                <span id="require">* </span>
+                商品簡介
+                </span>
+            <input type="text" class="form-control" formControlName="description" required>
+            <span id="error" *ngIf="description.invalid && description.dirty" >
+                請輸入產品簡介
+            </span>
+        </div>
+        <div>
+            <span>產品上架</span>
+            <select class="form-control" formControlName="onSell" required>
+                <option value="true"> 
+                    上架
+                </option>
+                <option value="false">
+                    下架
+                </option>
+            </select>
+            <span id="error" *ngIf="onSell.invalid && onSell.dirty" >
+                請選擇是否要上架
+            </span>
+        </div>
+        <div>
+            <span>
+                <span id="require">* </span>
+                商品價格
+                </span>
+            <input type="number" class="form-control" formControlName="price" required>
+            <span id="error" *ngIf="price.invalid && price.dirty" >
+                請輸入產品價格
+            </span>
+        </div>
+        <div>
+            <span>
+                <span id="require">* </span>
+                商品數量
+                </span>
+            <input type="number" class="form-control" formControlName="volume" required>
+            <span id="error" *ngIf="volume.invalid && volume.dirty" >
+                請輸入產品數量
+            </span>
+        </div>
+        <div>
+            <button (click)="onSubmit(productForm.value)" [disabled]="productForm.invalid">
+                送出
+            </button>
+        </div>
+    </div>
+</div>
+    

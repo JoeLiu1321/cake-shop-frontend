@@ -6,7 +6,6 @@ import {AccountService} from '../account.service'
   styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent implements OnInit {
-
   constructor(private account:AccountService) { }
 
   ngOnInit() {

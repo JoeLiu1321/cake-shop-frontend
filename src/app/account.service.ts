@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 @Injectable({providedIn: 'root'})
 export class AccountService {
-  account={};
-  constructor() { }
+  account;
+  constructor() { 
+    this.account='';
+  }
   addAccount(account){
     
   }
@@ -12,11 +14,12 @@ export class AccountService {
   }
 
   public logout(){
-    this.account={};
+    this.account='';
   }
 
   isLogin(){
-    return Object.keys(this.account).length>0;
+    return this.account!='';
+    // return Object.keys(this.account).length>0;
   }
 
   getAccount(){

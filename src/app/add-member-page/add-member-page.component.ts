@@ -40,10 +40,6 @@ export class AddMemberPageComponent{
     return(this.password.value==this.confirmPassword.value); 
   }
   submit(formData){
-    for(const data in formData){
-      console.log(`${data}:${formData[data]}`)
-    }
-
     let account:Account={
       accountName:formData.email,
       password:formData.password,

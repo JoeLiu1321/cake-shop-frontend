@@ -13,6 +13,9 @@ import { AddMemberPageComponent } from './add-member-page/add-member-page.compon
 import { BackendApiService } from './backend-api.service';
 import {ProductListComponent} from './product-list/product-list.component';
 import {AddOrderPageComponent} from './add-order-page/add-order-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AddProductPageComponent} from './add-product-page/add-product-page.component';
+import {OrderPageComponent} from './order-page/order-page.component';
 
 @NgModule({
   imports: [
@@ -20,11 +23,13 @@ import {AddOrderPageComponent} from './add-order-page/add-order-page.component';
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: TabBarComponent },
+      { path: '', component: TabDetailComponent },
+      { path:'tab/:tab', component:TabDetailComponent},
+      { path:'tab/:tab/:productId',component:AddOrderPageComponent},
       { path:'login', component:LoginPageComponent},
       { path:'addMember',component:AddMemberPageComponent},
-      { path:'addOrder/:productId',component:AddOrderPageComponent},
-    ])
+    ]),
+    BrowserAnimationsModule
   ],
   declarations: [
     AppComponent,
@@ -34,7 +39,9 @@ import {AddOrderPageComponent} from './add-order-page/add-order-page.component';
     LoginPageComponent,
     AddMemberPageComponent,
     ProductListComponent,
-    AddOrderPageComponent
+    AddOrderPageComponent,
+    AddProductPageComponent,
+    OrderPageComponent,
   ],
   bootstrap: [ AppComponent ],
   providers: [AccountService, BackendApiService]
