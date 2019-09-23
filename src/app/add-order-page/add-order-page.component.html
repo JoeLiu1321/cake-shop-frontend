@@ -1,24 +1,6 @@
-<!-- <div *ngIf="!account.isLogin()">
-    <h1>
-        Please Login First !!
-    </h1>
-    <div>
-        <label>
-            產品名稱
-        </label>
-        <select>
-            <option *ngFor="let p of products;" [value]="p.value">
-                {{p.name}}
-            </option>
-        </select>
-    </div>    
-    <p *ngIf="productId">
-        {{productId}}
-    </p>
-</div> -->
+<app-login-page *ngIf="!account.isLogin()"></app-login-page>
 
-<!-- <div *ngIf="!account.isLogin()"> -->
-<div>
+<div *ngIf="account.isLogin()">
     <form [formGroup]="orderForm" (ngSubmit)="onSubmit(orderForm.value)" required>
         <div>
             <span>
@@ -31,7 +13,7 @@
                 </option>
             </select>
             <span id="error" *ngIf="product.invalid && product.dirty" >
-                product is invalid!
+                請選擇商品
             </span>
         </div>
 
@@ -42,7 +24,7 @@
             </span>
             <input type="number" class="form-control" formControlName="productNumber" required max="10" min="1">
             <span id="error" *ngIf="productNumber.invalid && productNumber.dirty" >
-                productNumber is invalid!
+                請選擇商品數量
             </span>
         </div>
         <div>

@@ -1,15 +1,18 @@
 import { Component} from '@angular/core';
-
-export const tabs=['關於我們','產品介紹','線上訂購','加入會員','訂單記錄','編輯產品','使用者管理'];
-
+import {AccountService} from '../account.service';
 @Component({
   selector: 'app-tab-bar',
   templateUrl: './tab-bar.component.html',
   styleUrls: ['./tab-bar.component.css']
 })
 export class TabBarComponent {
-  tabs=tabs;
-  currentTab=tabs[0]
+  viewerTabs=['關於我們','產品介紹','加入會員'];
+  adminTabs=['產品介紹','產品管理','會員管理','訂單管理'];
+
+  currentTab;
+  constructor(private account:AccountService){
+   
+  }
   
   setCurrentTab(tab){
     this.currentTab=tab;

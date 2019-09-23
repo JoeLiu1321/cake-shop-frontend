@@ -17,14 +17,8 @@ export class LoginPageComponent{
   }
 
   submit(formData) {
-    this.apiService.login(formData.account,formData.password).subscribe(
-      resp=>{
-        if(resp['status'])
-          this.account.login(formData.account);
-        else
-          window.alert(resp['message'])
-      }
-    );
+    this.account.login(formData.account,formData.password);
+    this.loginForm.reset({account:formData.account,password:''});
   }
 
 }

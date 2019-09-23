@@ -18,8 +18,9 @@ export class AddProductPageComponent implements OnInit{
     volume;
     products;
     constructor(private api:BackendApiService, private router:Router){
-        this.api.getAllProduct().subscribe(products=>{
-            this.products=products;
+        this.api.getAllProduct().subscribe(resp=>{
+            if(resp.status)
+                this.products=resp.object;
         });
         this.productForm=new FormGroup({
             action:new FormControl(-1),
@@ -44,15 +45,16 @@ export class AddProductPageComponent implements OnInit{
         this.currentOption=action;
         if(this.products.find(x=>x.id==action)){
             this.api.getProduct(action).subscribe(
-                product=>{
-                    if(product){
+                resp=>{
+                    if(resp.status){
+                        let product=resp.object
                         this.productForm.reset({
                             action:action,
-                            name:product.name,
-                            description:product.description,
-                            price:product.price,
-                            onSell:product.onSell,
-                            volume:product.volume
+                            name:product['name'],
+                            description:product['description'],
+                            price:product['price'],
+                            onSell:product['onSell'],
+                            volume:product['volume']
                         });
                     }
                 }

@@ -5,13 +5,17 @@
     </h2>
 </a>
 <div>
-<app-tab-bar></app-tab-bar>
+  <app-tab-bar></app-tab-bar>
+</div>
+<div id="user" *ngIf="account.isLogin()">
+  user: 
+  <span>{{account.getAccount()}}</span>
 </div>
 <div>
-<button *ngIf="!account.isLogin()" [routerLink]="['/login']">
-Login
-</button>
-<button *ngIf="account.isLogin()" (click)="account.logout()">
+  <button *ngIf="!account.isLogin()" [routerLink]="['/login']">
+    Login
+  </button>
+  <button *ngIf="account.isLogin()" (click)="onLogout()">
     Logout
-    </button>
+  </button>
 </div>

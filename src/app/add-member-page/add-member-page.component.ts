@@ -1,62 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder,FormGroup,Validators} from '@angular/forms';
-import { BackendApiService, AccountInfo,Account} from '../backend-api.service';
+import { Component} from '@angular/core';
+import { BackendApiService} from '../backend-api.service';
 @Component({
   selector: 'app-add-member-page',
   templateUrl: './add-member-page.component.html',
   styleUrls: ['./add-member-page.component.css']
 })
 export class AddMemberPageComponent{
-  memberForm:FormGroup;
-  name; 
-  identify;
-  phone; 
-  address;
+  inviteCode;
   email;
-  password;
-  confirmPassword;
-  passwordEqual=false;
-  constructor(private formBuilder:FormBuilder,private api:BackendApiService){ 
-    this.memberForm=this.formBuilder.group({
-      name:['',Validators.minLength(3)],
-      identify:'',
-      phone:'',
-      address:'',
-      email:['',Validators.email],
-      password:'',
-      confirmPassword:'',
-    });
-    this.name = this.memberForm.controls['name'];
-    this.identify = this.memberForm.controls['identify'];
-    this.phone = this.memberForm.controls['phone'];
-    this.address = this.memberForm.controls['address'];
-    this.email = this.memberForm.controls['email'];
-    this.password = this.memberForm.controls['password'];
-    this.confirmPassword = this.memberForm.controls['confirmPassword'];
+  constructor(private api:BackendApiService){
   
   }
 
-  validPassword(){
-    return(this.password.value==this.confirmPassword.value); 
-  }
-  submit(formData){
-    let account:Account={
-      accountName:formData.email,
-      password:formData.password,
-      info:{
-        identify:formData.identify,
-        name:formData.name,
-        phone:formData.phone,
-        address:formData['address'],
-        email:formData.email
+
+  onInvite(inviteCode){
+    this.api.isAccountExisted(inviteCode).subscribe(resp=>{
+      if(resp.status){
+        if(window.confirm(`確認選擇 ${resp.object}當邀請人嗎?`))
+        this.inviteCode=inviteCode;
       }
-    }
-      this.api.addAccount(account).subscribe(
-        resp=>{
-          window.alert(resp['message']);
-        }
-      );
-    
+      else
+        window.alert('找不到此帳戶');  
+    })
   }
+
+  onValidate(email){
+    this.api.validateMail(email).subscribe(
+      resp=>{
+        if(resp.status)
+          this.email=email
+        else
+          window.alert(resp.message)
+    })
+  }
+
 
 }

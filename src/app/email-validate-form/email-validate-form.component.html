@@ -1,0 +1,29 @@
+<div [formGroup]="emailForm">
+    <label>
+      驗證你的Email
+    </label>
+    <input class="form-control" type="text" formControlName="email" placeholder="你的email Ex:XXX@gmail.com" required>
+    <span id="error" *ngIf="email.invalid && email.dirty" >
+        {{errorMsg}}
+    </span>
+    <div>
+        <button [disabled]="emailForm.invalid" (click)="onSubmit(email.value)">
+            送出
+        </button>
+    </div>
+</div>
+
+<div [formGroup]="emailForm">
+    <label>
+      驗證你的Email
+    </label>
+    <input class="form-control" type="text" formControlName="email" placeholder="你的email Ex:XXX@gmail.com" required>
+    <span id="error" *ngIf="email.invalid && email.dirty" >
+        {{errorMsg}}
+    </span>
+    <div>
+        <button [disabled]="emailForm.invalid" (click)="onSubmit(email.value)">
+            送出
+        </button>
+    </div>
+</div>

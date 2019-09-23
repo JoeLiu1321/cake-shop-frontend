@@ -16,7 +16,10 @@ import {AddOrderPageComponent} from './add-order-page/add-order-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AddProductPageComponent} from './add-product-page/add-product-page.component';
 import {OrderPageComponent} from './order-page/order-page.component';
-
+import {CookieService} from 'ngx-cookie-service';
+import { InviteAccountFormComponent } from './invite-account-form/invite-account-form.component';
+import { MemberDetailFormComponent } from './member-detail-form/member-detail-form.component';
+import { EmailValidateFormComponent } from './email-validate-form/email-validate-form.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -42,9 +45,12 @@ import {OrderPageComponent} from './order-page/order-page.component';
     AddOrderPageComponent,
     AddProductPageComponent,
     OrderPageComponent,
+    InviteAccountFormComponent,
+    MemberDetailFormComponent,
+    EmailValidateFormComponent,
   ],
   bootstrap: [ AppComponent ],
-  providers: [AccountService, BackendApiService]
+  providers: [AccountService, BackendApiService,CookieService]
 })
 export class AppModule { }
 

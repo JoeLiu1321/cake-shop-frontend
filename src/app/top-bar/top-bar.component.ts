@@ -1,14 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import {AccountService} from '../account.service'
+import {AccountService} from '../account.service';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent implements OnInit {
-  constructor(private account:AccountService) { }
+  constructor(private account:AccountService,private router:Router) { }
 
   ngOnInit() {
+  }
+
+  private onLogout(){
+    this.account.logout();
+    this.router.navigate(['/tab','產品介紹']);
   }
 
 }

@@ -1,5 +1,11 @@
-<div>
-    <button *ngFor="let tab of tabs" [title]="tab" (click)="setCurrentTab(tab)" [routerLink]="['/tab',tab]">
+<div *ngIf="this.account.isUser()">
+    <button *ngFor="let tab of viewerTabs" [title]="tab" (click)="setCurrentTab(tab)" [routerLink]="['/tab',tab]">
         {{tab}}
     </button>
+</div>
+
+<div *ngIf="this.account.isAdmin()">
+        <button *ngFor="let tab of adminTabs" [title]="tab" (click)="setCurrentTab(tab)" [routerLink]="['/tab',tab]">
+            {{tab}}
+        </button>
 </div>

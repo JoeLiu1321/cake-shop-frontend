@@ -1,11 +1,15 @@
-<div>
+<div *ngIf="account.isAdmin()">
     <table>
         <tr id="table-header">
+            <td></td>
             <td *ngFor="let item of displayHeader|keyvalue">
-                <div id="column-header">{{item.value}}</div>
+                <div id="column-header">{{item.key}}</div>
             </td>
         </tr>
         <tr *ngFor="let order of orders">
+            <td>
+                <input type="checkbox">
+            </td>
             <td *ngFor="let item of order|keyvalue">
                 <div *ngIf="item.key=='product'">{{item.value.name}}</div>
                 <div *ngIf="item.key!='product'">{{item.value}}</div>

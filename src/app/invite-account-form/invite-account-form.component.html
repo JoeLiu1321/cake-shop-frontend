@@ -1,0 +1,14 @@
+<div [formGroup]="formGroup">
+    <label>
+      邀請碼
+    </label>
+    <input class="form-control" type="text" formControlName="inviteCode" placeholder="邀請人的編號 Ex:1111" required>
+    <span id="error" *ngIf="inviteCode.invalid && inviteCode.dirty" >
+        {{errorMsg}}
+    </span>
+    <div>
+        <button [disabled]="formGroup.invalid" (click)="onSubmit(inviteCode.value)">
+            送出
+        </button>
+    </div>
+</div>
