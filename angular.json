@@ -119,5 +119,8 @@
       }
     }
   },
-  "defaultProject": "cake-shop-app"
+  "defaultProject": "cake-shop-app",
+  "cli": {
+    "analytics": false
+  }
 }
