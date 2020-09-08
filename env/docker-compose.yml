@@ -52,7 +52,21 @@ services:
     networks: 
       app:
         ipv4_address: 172.16.238.12
-    
+  
+  app-frontend:
+    build:
+      context: ../
+    restart: always
+    ports:
+      - '80:80'
+    links: 
+      ["app-backend:backend"]
+    depends_on:
+      ['app-backend']
+    networks: 
+      app:
+        ipv4_address: 172.16.238.13
+      
 
 networks:
   app:
