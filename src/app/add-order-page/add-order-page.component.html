@@ -12,7 +12,7 @@
                     {{p.name}}
                 </option>
             </select>
-            <span id="error" *ngIf="product.invalid && product.dirty" >
+            <span id="error" *ngIf="product.invalid && product.dirty">
                 請選擇商品
             </span>
         </div>
@@ -20,17 +20,17 @@
         <div>
             <span>
                 <span id="require">* </span>
-                    數量
+                數量
             </span>
             <input type="number" class="form-control" formControlName="productNumber" required max="10" min="1">
-            <span id="error" *ngIf="productNumber.invalid && productNumber.dirty" >
+            <span id="error" *ngIf="productNumber.invalid && productNumber.dirty">
                 請選擇商品數量
             </span>
         </div>
         <div>
-            <button [disabled] =  "orderForm.invalid" >
-                    submit
-                </button>
-            </div>
+            <button [disabled]="orderForm.invalid">
+                submit
+            </button>
+        </div>
     </form>
 </div>

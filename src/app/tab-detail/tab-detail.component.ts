@@ -1,6 +1,6 @@
-import { Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {AccountService} from '../account.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AccountService } from '../account.service';
 @Component({
   selector: 'app-tab-detail',
   templateUrl: './tab-detail.component.html',
@@ -8,13 +8,13 @@ import {AccountService} from '../account.service';
 })
 export class TabDetailComponent implements OnInit {
   tab;
-  constructor(private router:ActivatedRoute,private account:AccountService){
-    
+  constructor(private router: ActivatedRoute, public account: AccountService) {
+
   }
   ngOnInit() {
     this.router.paramMap.subscribe(
-      params=>{
-          this.tab=params.get('tab');
+      params => {
+        this.tab = params.get('tab');
       })
   }
 
